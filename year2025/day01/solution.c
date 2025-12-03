@@ -11,7 +11,7 @@ long day01_part1(FILE *fp) {
                 char direction = line[0];
                 int magnitude = atoi(line + 1);
                 dialPosition = positive_mod(direction == 'R' ? dialPosition + magnitude : dialPosition - magnitude, dialLength);
-                if (dialPosition == 0) {
+		if (dialPosition == 0) {
 			password++;
 		}
         }
