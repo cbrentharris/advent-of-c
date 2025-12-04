@@ -7,8 +7,8 @@ COMMON_OBJ = $(COMMON_SRC:.c=.o)
 
 # List the binaries you want to build.
 # For now you have just 2025 day 01.
-BINARIES = bin/2025_01 bin/2025_02
-TESTS    = bin/test_2025_01_solution bin/test_2025_02_solution
+BINARIES = bin/2025_01 bin/2025_02 bin/2025_03
+TESTS    = bin/test_2025_01_solution bin/test_2025_02_solution bin/test_2025_03_solution
 
 .PHONY: all clean tests
 
@@ -29,6 +29,14 @@ bin/2025_02: year2025/day02/main.c year2025/day02/solution.c $(COMMON_OBJ)
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
 bin/test_2025_02_solution: year2025/day02/test_solution.c year2025/day02/solution.c $(COMMON_OBJ)
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
+
+bin/2025_03: year2025/day03/main.c year2025/day03/solution.c $(COMMON_OBJ)
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
+
+bin/test_2025_03_solution: year2025/day03/test_solution.c year2025/day03/solution.c $(COMMON_OBJ)
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 

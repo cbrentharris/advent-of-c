@@ -16,4 +16,7 @@ int num_digits(long n);
     }                                                     \
 } while (0)
 
+#define MIN(a, b) (((a) < (b)) ? (a) : (b))
+#define MAX(a, b) (((a) > (b)) ? (a) : (b))
+
 #endif
