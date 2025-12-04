@@ -5,6 +5,8 @@
 
 int positive_mod(int a, int m);
 
+int num_digits(long n);
+
 /* Simple assert macro that shows file:line. */
 #define AOC_ASSERT(cond) do {                             \
     if (!(cond)) {                                        \
