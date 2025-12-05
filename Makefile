@@ -1,5 +1,5 @@
 CC      = gcc
-CFLAGS  = -Wall -Wextra -Wpedantic -std=c17 -Iinclude
+CFLAGS  = -Wall -Wextra -Wpedantic -std=c17 -D_POSIX_C_SOURCE=200809L -Iinclude
 LDFLAGS = -lm
 
 COMMON_SRC = src/aoc.c
