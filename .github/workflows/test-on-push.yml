@@ -1,0 +1,14 @@
+name: Run tests on push
+
+on: [push]
+
+jobs:
+  build-project:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      -name: Make tests
+      run: make tests
