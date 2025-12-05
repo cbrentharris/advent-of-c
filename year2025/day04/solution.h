@@ -1,5 +1,5 @@
-#ifndef SOLUTION_2025_DAY03_H
-#define SOLUTION_2025_DAY03_H
+#ifndef SOLUTION_2025_DAY04_H
+#define SOLUTION_2025_DAY04_H
 #include <stddef.h>
 #include <stdio.h>
 
