@@ -1,6 +1,6 @@
 CC      = gcc
 CFLAGS  = -Wall -Wextra -Wpedantic -std=c17 -Iinclude
-LDFLAGS =
+LDFLAGS = -lm
 
 COMMON_SRC = src/aoc.c
 COMMON_OBJ = $(COMMON_SRC:.c=.o)
