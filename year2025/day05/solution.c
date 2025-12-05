@@ -152,9 +152,6 @@ long day05_part2(FILE *fp) {
 	for (size_t i = 0 ; i < merged_range_count; i++) {
 		long *range = merged_ranges[i];
 		fresh_ids += (range[1] - range[0] + 1);
-	}
-	for (size_t i = 0 ; i < merged_range_count ; i++) {
-		long *range = merged_ranges[i];
 		free(range);
 	}
 	free(merged_ranges);
