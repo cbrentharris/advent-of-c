@@ -7,8 +7,8 @@ COMMON_OBJ = $(COMMON_SRC:.c=.o)
 
 # List the binaries you want to build.
 # For now you have just 2025 day 01.
-BINARIES = bin/2025_01 bin/2025_02 bin/2025_03 bin/2025_04 bin/2025_05 bin/2025_06 bin/2025_07
-TESTS    = bin/test_2025_01_solution bin/test_2025_02_solution bin/test_2025_03_solution bin/test_2025_04_solution bin/test_2025_05_solution bin/test_2025_06_solution bin/test_2025_07_solution
+BINARIES = bin/2025_01 bin/2025_02 bin/2025_03 bin/2025_04 bin/2025_05 bin/2025_06 bin/2025_07 bin/2025_08
+TESTS    = bin/test_2025_01_solution bin/test_2025_02_solution bin/test_2025_03_solution bin/test_2025_04_solution bin/test_2025_05_solution bin/test_2025_06_solution bin/test_2025_07_solution bin/test_2025_08_solution
 
 .PHONY: all clean tests
 
@@ -69,6 +69,14 @@ bin/2025_07: year2025/day07/main.c year2025/day07/solution.c $(COMMON_OBJ)
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
 bin/test_2025_07_solution: year2025/day07/test_solution.c year2025/day07/solution.c $(COMMON_OBJ)
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
+
+bin/2025_08: year2025/day08/main.c year2025/day08/solution.c $(COMMON_OBJ)
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
+
+bin/test_2025_08_solution: year2025/day08/test_solution.c year2025/day08/solution.c $(COMMON_OBJ)
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
