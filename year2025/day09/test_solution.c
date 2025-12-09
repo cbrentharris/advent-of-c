@@ -14,7 +14,7 @@ int main(void) {
 
 	long result = day09_part1(sample_fp);
 	fclose(sample_fp);
-	AOC_ASSERT(result == 0);
+	AOC_ASSERT(result == 50);
 
 	char *input_path = "year2025/day09/input.txt";
 	FILE *input_fp = fopen(input_path, "r");
@@ -25,7 +25,7 @@ int main(void) {
 
 	result = day09_part1(input_fp);
 	fclose(input_fp);
-	AOC_ASSERT(result == 0);
+	AOC_ASSERT(result > 2147477792);
 
 
 	sample_fp = fopen(sample_path, "r");
