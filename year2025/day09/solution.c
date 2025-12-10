@@ -69,24 +69,24 @@ int point_on_segment(Point *p, Segment *e) {
 size_t cast_ray_count(Point *a, Segment *edges, size_t edge_count) {
 	for (size_t i = 0; i < edge_count; i++) {
 		if (point_on_segment(a, &edges[i])) {
-					return 1;
-			}
+			return 1;
 		}
+	}
 
-		size_t a_count = 0;
-		for (size_t i = 0 ; i < edge_count ; i++) {
-			Segment edge = edges[i];
-			long y1 = edge.a->y;
-			long y2 = edge.b->y;
-			long x1 = edge.a->x;
-			long x2 = edge.b->x;
+	size_t a_count = 0;
+	for (size_t i = 0 ; i < edge_count ; i++) {
+		Segment edge = edges[i];
+		long y1 = edge.a->y;
+		long y2 = edge.b->y;
+		long x1 = edge.a->x;
+		long x2 = edge.b->x;
 
-			int y_cross = (y1 > a->y) != (y2 > a->y);
-			if (y_cross) {
-					double t = (double)(a->y - y1) / (double)(y2 - y1);
-					double x_intersect = x1 + t * (double)(x2 - x1);
+		int y_cross = (y1 > a->y) != (y2 > a->y);
+		if (y_cross) {
+			double t = (double)(a->y - y1) / (double)(y2 - y1);
+			double x_intersect = x1 + t * (double)(x2 - x1);
 			if (x_intersect > (double)a->x) {
-				 a_count++;
+				a_count++;
 			}
 		}
 	}
@@ -94,62 +94,66 @@ size_t cast_ray_count(Point *a, Segment *edges, size_t edge_count) {
 }
 
 int point_inside_or_on(Point *p, Segment *edges, size_t edge_count) {
-		size_t count = cast_ray_count(p, edges, edge_count);
-		return count % 2 == 1;
+	size_t count = cast_ray_count(p, edges, edge_count);
+	return count % 2 == 1;
 }
 
 long orient(Point *a, Point *b, Point *c) {
 	long ux = b->x - a->x;
-		long uy = b->y - a->y;
-		long vx = c->x - a->x;
+	long uy = b->y - a->y;
+	long vx = c->x - a->x;
 	long vy = c->y - a->y;
-		long cross = ux * vy - uy * vx;
-		if (cross > 0) return 1;
-		if (cross < 0) return -1;
-		return 0;
+	long cross = ux * vy - uy * vx;
+	if (cross > 0) {
+		return 1;
+	}
+	if (cross < 0) {
+		return -1;
+	}
+	return 0;
 }
 
 int on_segment_closed(Point *a, Point *b, Point *p) {
-		return p->x >= MIN(a->x, b->x) && p->x <= MAX(a->x, b->x) &&
-		p->y >= MIN(a->y, b->y) && p->y <= MAX(a->y, b->y);
+	return p->x >= MIN(a->x, b->x) && p->x <= MAX(a->x, b->x) &&
+	p->y >= MIN(a->y, b->y) && p->y <= MAX(a->y, b->y);
 }
 
 int segments_intersect(Point *a, Point *b, Point *c, Point *d) {
 	int o1 = orient(a, b, c);
-		int o2 = orient(a, b, d);
-		int o3 = orient(c, d, a);
-		int o4 = orient(c, d, b);
+	int o2 = orient(a, b, d);
+	int o3 = orient(c, d, a);
+	int o4 = orient(c, d, b);
 
-		if (o1 != 0 && o2 != 0 && o3 != 0 && o4 != 0 &&
-			o1 != o2 && o3 != o4) {
-			return 1;
-		}
+	if (o1 != 0 && o2 != 0 && o3 != 0 && o4 != 0 &&
+		o1 != o2 && o3 != o4) {
+		return 1;
+	}
 	return 0;
 }
 
 int segment_inside_polygon(Segment *s, Segment *edges, size_t edge_count) {
 	Point *a = s->a;
-		Point *b = s->b;
+	Point *b = s->b;
 
-		if (!point_inside_or_on(a, edges, edge_count)) {
+	if (!point_inside_or_on(a, edges, edge_count)) {
 		// If the segment corner isn't within the polygon reject
 		return 0;
 	}
-		if (!point_inside_or_on(b, edges, edge_count)) {
+	if (!point_inside_or_on(b, edges, edge_count)) {
 		return 0;
 	}
 
-		for (size_t i = 0; i < edge_count; i++) {
-			Segment *e = &edges[i];
+	for (size_t i = 0; i < edge_count; i++) {
+		Segment *e = &edges[i];
 
-			if (e->a == a || e->a == b || e->b == a || e->b == b) {
+		if (e->a == a || e->a == b || e->b == a || e->b == b) {
 			// if a segment is an edge, then we are good.
-					continue;
-			}
+			continue;
+		}
 
-			if (segments_intersect(a, b, e->a, e->b)) {
-					return 0;
-			}
+		if (segments_intersect(a, b, e->a, e->b)) {
+			return 0;
+		}
 	}
 	return 1;
 }
