@@ -26,16 +26,18 @@ int main(void) {
 	result = day09_part1(input_fp);
 	fclose(input_fp);
 	AOC_ASSERT(result > 2147477792);
+	AOC_ASSERT(result == 4733727792);
 
 
 	sample_fp = fopen(sample_path, "r");
 	result = day09_part2(sample_fp);
 	fclose(sample_fp);
-	AOC_ASSERT(result == 0);
+	AOC_ASSERT(result == 24);
 
 	input_fp = fopen(input_path, "r");
 	result = day09_part2(input_fp);
 	fclose(input_fp);
-	AOC_ASSERT(result == 0);
+	AOC_ASSERT(result < 4586842110);
+	AOC_ASSERT(result == 1566346198);
 	return 0;
 }
